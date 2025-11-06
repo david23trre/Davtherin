@@ -3,144 +3,203 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>K & D</title>
   <link rel="icon" type="image/png" href="Images/Web Icon.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="Custom-M.js" defer></script>
+  <script src="Hearts.js" defer></script>
+  <script src="Timer.js" defer></script>
 </head>
 
-<body class="bg-gradient-to-b from-green-50 to-yellow-50 text-green-900">
+<body class="bg-black text-white">
 
-<header class="relative h-[800px] flex flex-col items-center justify-center text-center bg-cover bg-center"
-    style="background-image: url('Images/Background 4.jpg');">
-  <div class="absolute inset-0 bg-black/15"></div>
+  
+<header class="relative h-[400px] md:h-[800px] flex flex-col items-center justify-center text-center bg-cover bg-center"
+  style="background-image: url('Images/Background.jpg');">
 
-  <div
-      class="relative z-10 bg-black/40 backdrop-blur-md shadow-xl rounded-3xl px-8 py-6 border border-green-200 max-w-md">
-    <h1
-      class="text-3xl md:text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-300 via-green-500 to-green-700">
+  <canvas id="corazones" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+  <div class="relative z-10 bg-black/30 backdrop-blur-lg shadow-xl rounded-2xl md:rounded-3xl px-6 py-5 md:px-8 md:py-8 border border-blue-200 max-w-sm md:max-w-lg">
+    <h1 class="text-xl md:text-4xl font-extrabold mb-2 md:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-blue-500 to-blue-700 drop-shadow-[0_0_12px_rgba(80,150,255,0.9)]">
       Tiempo Juntos:
     </h1>
-    <p id="principal" class="text-2xl md:text-3xl font-semibold mb-2 text-green-200 drop-shadow-lg"></p>
-    <p id="secundario" class="text-lg md:text-xl text-green-100 tracking-wide drop-shadow-md"></p>
+
+    <p id="principal" class="text-lg md:text-3xl font-semibold mb-0 text-blue-200 drop-shadow-[0_0_10px_rgba(100,170,255,1)] tracking-wide"></p>
+
+    <p id="secundario" class="text-sm md:text-xl text-white tracking-wide drop-shadow-md"></p>
   </div>
 
-  <p id="minecraft-msg"
-     class="mt-4 text-white font-bold text-lg md:text-xl drop-shadow-md bg-black/50 px-4 py-2 rounded-lg">
-  </p>
+  <div id="minecraft-msg" class="mt-2 text-white bg-black/50 px-2 py-1 rounded text-sm md:text-xl inline-block"></div>
+
 </header>
 
 
+<section id="huevo-section" class="relative flex flex-col items-center justify-center text-center py-16 bg-black overflow-hidden">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.3),transparent_70%)] blur-[100px] animate-pulse-slow"></div>
+
+  <h2 class="relative z-10 text-3xl sm:text-4xl md:text-5xl font-bold mb-20 text-white drop-shadow-[0_0_10px_#60a5fa] tracking-wide">
+    Rompe el huevo
+  </h2>
+
+  <div class="relative z-10 flex justify-center items-center">
+    <div class="absolute w-[250px] h-[250px] md:w-[350px] md:h-[350px] bg-blue-500/30 blur-[90px] rounded-full animate-pulse-slow"></div>
+    <img id="huevo" src="Images/egg1.png" alt="Huevo"
+      class="relative w-[35%] sm:w-[35%] md:w-[50%] lg:w-[18%] xl:w-[35%] cursor-pointer animate-bounce-subtle select-none transition-transform duration-500 hover:scale-110 hover:drop-shadow-[0_0_25px_#60a5fa]" />
+  </div>
+
+  <p id="mensaje-huevo" class="relative z-10 text-lg sm:text-2xl md:text-3xl mt-16 text-blue-200 font-medium drop-shadow-[0_0_10px_#3b82f6]">
+    Rompelo para descubrir tu destino...
+  </p>
+
+  <div class="absolute top-10 left-1/4 text-blue-300 text-xl animate-ping">✦</div>
+  <div class="absolute top-1/3 right-1/4 text-blue-400 text-sm animate-pulse">✧</div>
+  <div class="absolute bottom-20 left-1/3 text-blue-300 text-lg animate-pulse">✦</div>
+  <div class="absolute bottom-10 right-1/3 text-blue-500 text-xl animate-ping">✧</div>
+</section>
+
+
+
+<style>
+
+  @keyframes bounce-subtle {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-3px) rotate(1deg); }
+    50% { transform: translateY(2px) rotate(-1deg); }
+    75% { transform: translateY(-1px) rotate(1deg); }
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s infinite ease-in-out;
+  }
+
+  @keyframes shake {
+    0% { transform: rotate(0deg); }
+    20% { transform: rotate(3deg); }
+    40% { transform: rotate(-3deg); }
+    60% { transform: rotate(3deg); }
+    80% { transform: rotate(-3deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+  .shake {
+    animation: shake 0.4s ease-in-out;
+  }
+</style>
+
 
 <script>
-  const mensajes = [
-    "¡Feliz juntos! 💕",
-    "Amor infinito ❤️",
-    "No dejes de sonreír 😊",
-    "Eres mi mundo 🌎",
-    "¡Cada día mejor! 🌟",
-    "Contigo todo es diversión 🎉",
-    "Nuestro amor crece 💚",
-    "Día perfecto contigo ☀️",
+  const huevo = document.getElementById("huevo");
+  const mensaje = document.getElementById("mensaje-huevo");
+
+  const paginas = [
+    "Galeria.html",
+    "Canciones.html",
   ];
 
-  // Selecciona un mensaje aleatorio al cargar la página
-  const index = Math.floor(Math.random() * mensajes.length);
-  document.getElementById("minecraft-msg").textContent = mensajes[index];
+  const sprites = [
+    "Images/egg1.png",
+    "Images/egg2.png",
+    "Images/egg3.png",
+    "Images/egg4.png",
+    "Images/egg_broken.png"
+  ];
+
+  let clicks = 0;
+
+  huevo.addEventListener("click", () => {
+    huevo.classList.add("shake");
+    setTimeout(() => huevo.classList.remove("shake"), 400);
+
+    clicks++;
+
+    if (clicks < sprites.length) {
+      huevo.src = sprites[clicks];
+    }
+
+    if (clicks < sprites.length - 1) {
+      mensaje.textContent = `¡Crack! (${clicks}/${sprites.length - 1})`;
+            const sonido = new Audio("Sonidos/crack.mp3");
+      sonido.play();
+    }
+
+    if (clicks === sprites.length - 1) {
+      mensaje.textContent = "💥 ¡El huevo se rompió! Descubriendo tu destino...";
+
+      const sonido = new Audio("Sonidos/crack.mp3");
+      sonido.play();
+
+      setTimeout(() => {
+        const paginaAleatoria = paginas[Math.floor(Math.random() * paginas.length)];
+        window.location.href = paginaAleatoria;
+      }, 1200);
+    }
+  });
 </script>
 
 
+<section class="flex flex-col items-center justify-center text-center bg-black py-12">
+  <p class="mt-[500px] px-4 text-md sm:text-1xl md:text-2xl mb-6 text-blue-200 font-medium drop-shadow-[0_0_10px_#3b82f6]">
+    También puedes simplemente navegar directamente hacia cualquier destino de la página
+  </p>
 
-  <script>
-    const inicio = new Date("2024-09-07");
+<button id="toggleMenu"
+class="mb-6 px-8 py-3 text-white text-lg sm:text-xl md:text-2xl font-semibold
+bg-[#1F2A36]
+border border-[#8AA6C1]/50
+rounded-full
+shadow-[0_0_8px_rgba(138,166,193,0.25)]
+hover:border-[#8AA6C1]/80
+hover:shadow-[0_0_14px_rgba(138,166,193,0.45)]
+transition-all duration-300">
+  Destinos
+</button>
 
-    function calcularTiempo() {
-      const hoy = new Date();
-      const diferencia = hoy - inicio;
-      const totalDias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
+<ul id="navList" class="flex flex-col gap-4 max-h-0 overflow-hidden transition-all duration-500 w-64 sm:w-80">
 
-      let anios = hoy.getFullYear() - inicio.getFullYear();
-      let meses = hoy.getMonth() - inicio.getMonth();
-      let dias = hoy.getDate() - inicio.getDate();
+  <li>
+    <a href="Galeria.html"
+    class="block px-6 py-3 text-white font-medium text-center rounded-xl
+    bg-[#1F2A36]/70
+    border border-[#8AA6C1]/40
+    shadow-[0_0_6px_rgba(138,166,193,0.15)]
+    hover:border-[#8AA6C1]/80
+    hover:shadow-[0_0_14px_rgba(138,166,193,0.35)]
+    transition-all duration-300">
+      Galería
+    </a>
+  </li>
 
-      if (dias < 0) {
-        meses--;
-        const ultimoDiaMesAnterior = new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
-        dias += ultimoDiaMesAnterior;
-      }
-      if (meses < 0) {
-        anios--;
-        meses += 12;
-      }
+  <li>
+    <a href="Canciones.html"
+    class="block px-6 py-3 text-white font-medium text-center rounded-xl
+    bg-[#1F2A36]/70
+    border border-[#8AA6C1]/40
+    shadow-[0_0_6px_rgba(138,166,193,0.15)]
+    hover:border-[#8AA6C1]/80
+    hover:shadow-[0_0_14px_rgba(138,166,193,0.35)]
+    transition-all duration-300">
+      ¿Cómo Suena nuestra Relación?
+    </a>
+  </li>
 
-      document.getElementById("principal").textContent =
-        `${anios} Año, ${meses} Meses y ${dias} Días`;
+</ul>
 
-      document.getElementById("secundario").textContent =
-        `(${totalDias} Días en total 🤍)`;
+  <div class="pb-5"></div>
+</section>
+
+<script>
+  const toggleBtn = document.getElementById('toggleMenu');
+  const navList = document.getElementById('navList');
+
+  toggleBtn.addEventListener('click', () => {
+    if(navList.style.maxHeight && navList.style.maxHeight !== "0px") {
+      navList.style.maxHeight = "0";
+    } else {
+      navList.style.maxHeight = navList.scrollHeight + "px";
     }
-
-    calcularTiempo();
-  </script>
-
-
-  <section class="max-w-7xl mx-auto px-6 py-12">
-    <h2 class="text-4xl font-extrabold mb-10 text-green-700 text-center tracking-wide">Fotos Favoritas
-    </h2>
-
-    <div class="columns-1 sm:columns-2 lg:columns-5 gap-4">
-      <!-- Foto 1 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 1.jpg" alt="Foto 1"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-
-      <!-- Foto 2 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 2.jpg" alt="Foto 2"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-
-      <!-- Foto 3 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 3.jpg" alt="Foto 3"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-
-      <!-- Foto 4 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 4.jpg" alt="Foto 4"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-
-      <!-- Foto 5 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 5.jpg" alt="Foto 5"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-
-      <!-- Foto 6 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 6.jpg" alt="Foto 6"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-
-      <!-- Foto 7 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 7.jpg" alt="Foto 7"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-
-      <!-- Foto 8 -->
-      <div class="break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group">
-        <img src="Images/Background 8.jpg" alt="Foto 8"
-          class="w-full h-auto object-cover rounded-2xl transform transition-transform duration-500 group-hover:scale-105">
-      </div>
-    </div>
-  </section>
-
-
-
-
+  });
+</script>
 
 
 

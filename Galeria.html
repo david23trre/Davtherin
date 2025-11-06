@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>K & D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="Images/Web Icon.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="Custom-M.js" defer></script>
+  <script src="Hearts.js" defer></script>
+  <script src="Timer.js" defer></script>
+</head>
+
+</head>
+
+<body class="bg-black">
+
+  <header
+    class="relative h-[400px] md:h-[800px] flex flex-col items-center justify-center text-center bg-cover bg-center"
+    style="background-image: url('Images/Background.jpg');">
+
+    <canvas id="corazones" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+    <div
+      class="relative z-10 bg-black/30 backdrop-blur-lg shadow-xl rounded-2xl md:rounded-3xl px-6 py-5 md:px-8 md:py-8 border border-blue-200 max-w-sm md:max-w-lg">
+      <h1
+        class="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-blue-500 to-blue-700 drop-shadow-[0_0_12px_rgba(80,150,255,0.9)]">
+        Tiempo Juntos:
+      </h1>
+
+      <p id="principal"
+        class="text-lg md:text-3xl font-semibold mb-0 text-blue-200 drop-shadow-[0_0_10px_rgba(100,170,255,1)] tracking-wide">
+      </p>
+
+      <p id="secundario" class="text-sm md:text-xl text-white tracking-wide drop-shadow-md"></p>
+    </div>
+
+    <div id="minecraft-msg" class="mt-2 text-white bg-black/50 px-2 py-1 rounded text-sm md:text-xl inline-block"></div>
+
+    <a href="index.html"
+      class="mt-10 md:mt-20 inline-block bg-black/30 hover:bg-black/70 text-white font-semibold px-6 py-3 md:px-10 md:py-4 rounded-full border border-blue-300/60 backdrop-blur-md transition-all duration-300 drop-shadow-[0_0_8px_rgba(120,170,255,0.9)]">
+      ← Volver al inicio
+    </a>
+
+  </header>
+
+
+
+
+  <section class="bg-black max-w-7xl mx-auto px-6 py-12">
+
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-10 text-white drop-shadow-[0_0_10px_white] text-center">
+      Fotos Favoritas</h2>
+
+    <p class="text-lg font-bold mb-20 text-white mt-10 text-center">La verdad es que los dos tenemos muchísimas fotos juntos, pero entre ella y yo, estamos de acuerdo sobre de que estas son definitivamente las que más nos gustan de nuestra enorme colección.</p>
+
+    <div class="columns-2 sm:columns-2 lg:columns-5 gap-4">
+
+      <!-- Foto 1 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/1.jpg" alt="Foto 1"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 2 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/2.jpg" alt="Foto 2"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 3 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/3.jpg" alt="Foto 3"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 4 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/4.jpg" alt="Foto 4"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 5 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/5.jpg" alt="Foto 5"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 6 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/6.jpg" alt="Foto 6"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 7 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/7.jpg" alt="Foto 7"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 8 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/8.jpg" alt="Foto 8"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 9 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/9.jpg" alt="Foto 9"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 10 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/10.jpg" alt="Foto 10"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 11 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/11.jpg" alt="Foto 11"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 12 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/12.jpg" alt="Foto 12"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 13 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/13.jpg" alt="Foto 13"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 14 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/14.jpg" alt="Foto 14"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 15 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/15.jpg" alt="Foto 15"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 16 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/16.jpg" alt="Foto 16"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 17 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/17.jpg" alt="Foto 17"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 18 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/18.jpg" alt="Foto 18"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 19 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/19.jpg" alt="Foto 19"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 20 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/20.jpg" alt="Foto 20"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 21 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/21.jpg" alt="Foto 21"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 22 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/22.jpg" alt="Foto 22"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 23 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/23.jpg" alt="Foto 23"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 24 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/24.jpg" alt="Foto 24"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 25 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/25.jpg" alt="Foto 25"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 26 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/26.jpg" alt="Foto 26"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 27 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/27.jpg" alt="Foto 27"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 28 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/28.jpg" alt="Foto 28"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 29 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/29.jpg" alt="Foto 29"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+
+      <!-- Foto 30 -->
+      <div
+        class="border-[2px] md:border-[4px] break-inside-avoid mb-4 overflow-hidden rounded-2xl shadow-lg group relative">
+        <img src="Galeria/30.jpg" alt="Foto 30"
+          class="w-full h-auto object-cover transform transition duration-500 group-hover:scale-105">
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transform -translate-x-full group-hover:translate-x-full transition duration-700 pointer-events-none">
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>
