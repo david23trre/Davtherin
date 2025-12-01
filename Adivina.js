@@ -42,14 +42,12 @@ const animeList = [
 ];
 
 
-
-
-
 const totalQuestions = animeList.length;
 let score = 0;
 let remaining = [...animeList];
 let currentAnime = null;
 let answerLocked = false;
+let nextImage = null;
 
 const animeCard = document.getElementById("animeCard");
 const titleEl = document.getElementById("animeTitle");
@@ -142,13 +140,18 @@ function clearResultMessage() {
   msgEl.style.color = "";
 }
 function showGameFinished() {
-  titleEl.textContent = "Juego Finalizado";
+  titleEl.textContent = "🎉 Juego Finalizado";
   imgEl.style.display = "none";
   typeEl.style.display = "none";
   buttonsContainer.style.display = "none";
   showResultMessage("Gracias por jugar", "success");
   scoreEl.textContent = `Score final: ${score} / ${totalQuestions}`;
   currentAnime = null;
+}
+
+function preloadNext(nextAnime) {
+  nextImage = new Image();
+  nextImage.src = nextAnime.img;
 }
 
 function loadAnime() {
@@ -165,6 +168,19 @@ function loadAnime() {
   const index = Math.floor(Math.random() * remaining.length);
   currentAnime = remaining[index];
 
+  // Pre-cargar la siguiente tarjeta
+  if (remaining.length > 1) {
+    const nextIndex = (index + 1) % remaining.length;
+    preloadNext(remaining[nextIndex]);
+  }
+
+  // Usar la imagen precargada si existe
+  if (nextImage && nextImage.src === currentAnime.img) {
+    imgEl.src = nextImage.src;
+  } else {
+    imgEl.src = currentAnime.img;
+  }
+
   document.documentElement.style.setProperty("--anime-color", currentAnime.color);
   animeCard.style.boxShadow = `0 0 25px var(--anime-color)`;
   animeCard.style.borderColor = `var(--anime-color)`;
@@ -177,7 +193,6 @@ function loadAnime() {
   ], { duration: 400, easing: "ease-out", fill: "forwards" });
 
   titleEl.textContent = currentAnime.title;
-  imgEl.src = currentAnime.img;
   imgEl.style.display = "block";
   typeEl.textContent = currentAnime.type || "Anime";
 
@@ -200,12 +215,12 @@ function selectAnswer(choice) {
   if (correct) {
     score++;
     tintCard("#6EE7B7", 28);
-    showResultMessage("¡Correcto!", "success");
+    showResultMessage("✨ ¡Correcto!", "success");
     playSuccessTone();
   } else {
     tintCard("#FF8A8A", 28);
     shakeCard();
-    showResultMessage("Incorrecto", "error");
+    showResultMessage("❌ Incorrecto", "error");
     playErrorTone();
   }
 
