@@ -53,7 +53,6 @@
 
   <p class="text-lg font-bold mb-20 text-white mt-10 text-center">Este es un destino tipo juego para saber cuanto nos conoces a cada uno. Es simple, se te mostrará una tarjeta conteniendo ya sea una película, anime o serie cualquiera y tendrás que adivinar si le gusta más a David, a la Katt o a ambos.</p>
 
-  <!-- SCORE -->
   <p id="scoreDisplay"
      class="text-2xl font-extrabold text-center mb-6 
             text-[var(--anime-color)] drop-shadow-[0_0_12px_var(--anime-color)]
@@ -61,7 +60,6 @@
     Score: 0 / 0
   </p>
 
-  <!-- CARD -->
   <div id="animeCard"
        class="max-w-xs mx-auto p-6 rounded-3xl backdrop-blur-xl transition-all duration-300
               bg-white/5 border shadow-[0_0_25px_var(--anime-color)]
@@ -83,7 +81,6 @@
       Tipo
     </p>
 
-    <!-- OPCIONES -->
     <div id="buttonsContainer" class="flex flex-col gap-3">
       <button onclick="selectAnswer('David')"
               class="answer-button px-5 py-3 rounded-xl text-white font-semibold transition-all
@@ -108,13 +105,12 @@
     </div>
   </div>
 
-  <!-- MENSAJE -->
   <p id="resultMessage"
      class="text-center text-xl font-extrabold mt-6 opacity-0 transition-all duration-300">
   </p>
 </section>
 
-
+<img id="preImg" class="hidden w-0 h-0" />
 
 
 </body>

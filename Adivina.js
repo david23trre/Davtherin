@@ -41,6 +41,28 @@ const animeList = [
   { title: "Tokyo Ghoul", img: "Images/Animes/Tokyo-Ghoul.jpg", likedBy: "David", color: "#6d1b7b", type: "Anime" },
 ];
 
+async function precargarYDecodificar(nextItem) {
+    return new Promise((resolve) => {
+        const img = new Image();
+        img.src = nextItem.img;
+
+        img.onload = () => {
+            img.decode()
+                .then(() => {
+                    const pre = document.getElementById("preImg");
+                    pre.src = nextItem.img;
+                    resolve();
+                })
+                .catch(() => {
+                    const pre = document.getElementById("preImg");
+                    pre.src = nextItem.img;
+                    resolve();
+                });
+        };
+
+        img.onerror = resolve;
+    });
+}
 
 const totalQuestions = animeList.length;
 let score = 0;
@@ -154,7 +176,7 @@ function preloadNext(nextAnime) {
   nextImage.src = nextAnime.img;
 }
 
-function loadAnime() {
+async function loadAnime() {
   resetButtonVisuals();
   resetCardVisual();
   clearResultMessage();
@@ -168,17 +190,16 @@ function loadAnime() {
   const index = Math.floor(Math.random() * remaining.length);
   currentAnime = remaining[index];
 
-  // Pre-cargar la siguiente tarjeta
-  if (remaining.length > 1) {
-    const nextIndex = (index + 1) % remaining.length;
-    preloadNext(remaining[nextIndex]);
+  const pre = document.getElementById("preImg");
+  if (pre.src && pre.src.includes(currentAnime.img)) {
+      imgEl.src = pre.src;
+  } else {
+      imgEl.src = currentAnime.img;
   }
 
-  // Usar la imagen precargada si existe
-  if (nextImage && nextImage.src === currentAnime.img) {
-    imgEl.src = nextImage.src;
-  } else {
-    imgEl.src = currentAnime.img;
+  if (remaining.length > 1) {
+    const nextIndex = (index + 1) % remaining.length;
+    precargarYDecodificar(remaining[nextIndex]);
   }
 
   document.documentElement.style.setProperty("--anime-color", currentAnime.color);
@@ -256,3 +277,4 @@ function selectAnswer(choice) {
 }
 
 loadAnime();
+
